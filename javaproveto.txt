@@ -1,0 +1,75 @@
+package com.projeto.estacio;
+
+
+public class JogoDaVelha {
+    
+    private char[][] jogodavelha;
+    private int jogada;
+
+    public JogoDaVelha() {
+    	jogodavelha = new char[3][3];
+        jogada = 1;
+    }
+
+    
+    public char[][] getJogoVelha() {
+        return jogodavelha;
+    }
+
+  
+    public void setJogoVelha(char[][] jogoVelha) {
+        this.jogodavelha = jogodavelha;
+    }
+
+   
+    public int getJogada() {
+        return jogada;
+    }
+
+  
+    public void setJogada(int jogada) {
+        this.jogada = jogada;
+    }
+    
+    public boolean validarJogada(int linha, int coluna, char sinal) {
+
+        if (jogodavelha[linha][coluna] == 'X' || jogodavelha[linha][coluna] == 'O') {
+            return false;
+
+        } else { 
+        	jogodavelha[linha][coluna] = sinal;
+            jogada++;
+            return true;
+        }
+    }
+    
+    public void imprimirTabuleiro() {
+        for (int i = 0; i < jogodavelha.length; i++) {
+            for (int j = 0; j < jogodavelha[i].length; j++) {
+                System.out.print(jogodavelha[i][j] + " | ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public boolean verificarGanhador(char sinal) {
+        if     ((jogodavelha[0][0] == sinal && jogodavelha[0][1] == sinal && jogodavelha[0][2] == sinal) || 
+                (jogodavelha[1][0] == sinal && jogodavelha[1][1] == sinal && jogodavelha[1][2] == sinal) || 
+                (jogodavelha[2][0] == sinal && jogodavelha[2][1] == sinal && jogodavelha[2][2] == sinal) || 
+                (jogodavelha[0][0] == sinal && jogodavelha[1][0] == sinal && jogodavelha[2][0] == sinal) || 
+                (jogodavelha[0][1] == sinal && jogodavelha[1][1] == sinal && jogodavelha[2][1] == sinal) || 
+                (jogodavelha[0][2] == sinal && jogodavelha[1][2] == sinal && jogodavelha[2][2] == sinal) || 
+                (jogodavelha[0][0] == sinal && jogodavelha[1][1] == sinal && jogodavelha[2][2] == sinal) || 
+                (jogodavelha[0][2] == sinal && jogodavelha[1][1] == sinal && jogodavelha[2][0] == sinal)) {  
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean vezJogador1(){
+        if (jogada % 2 == 1){
+            return true;
+        }
+        return false;
+    }
+}
